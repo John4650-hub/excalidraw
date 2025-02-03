@@ -14,8 +14,9 @@ jobs:
       run: |
         npm install
         yarn build
-        ls -a
-        zip -r build.zip . -i build/
+        ls excalidraw-app/
+        echo "######--4#-#3##3##"
+        zip -r build.zip excalidraw-app/build/
         gh release create ${{ github.run_number }}.0.0 build.zip
       env:
          GITHUB_TOKEN: ${{ secrets.TK }}
