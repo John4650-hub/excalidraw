@@ -1,1 +1,21 @@
-foo
+name: build excalidraw
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: create releases
+      run: |
+        npm install --global yarn
+        yarn build
+        zip -r build.zip build/
+        gh release create ${{ github.run_number }}.0.0 build.zip
+      env:
+         GITHUB_TOKEN: ${{ secrets.TK }}
+      shell: bash
