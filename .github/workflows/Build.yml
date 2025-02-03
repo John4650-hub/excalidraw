@@ -12,7 +12,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: create releases
       run: |
-        npm install --global yarn
+        npm install
         yarn build
         zip -r build.zip build/
         gh release create ${{ github.run_number }}.0.0 build.zip
